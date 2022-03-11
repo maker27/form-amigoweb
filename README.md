@@ -1,3 +1,5 @@
+[Demo](https://maker27.github.io/form-amigoweb/)
+
 # test task from Amigoweb
 
 1. Сверстать компонент формы с использованием React JS (без использования ui библиотек).

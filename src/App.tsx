@@ -21,7 +21,7 @@ const App: React.FC = () => {
         <>
             <GlobalStyles />
             <Container>
-                <Router>
+                <Router basename="/form-amigoweb">
                     <Routes>
                         <Route path="/" element={<RegForm />} />
                         <Route path="/auth" element={<AuthForm />} />
