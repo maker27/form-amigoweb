@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React, { Dispatch, SetStateAction, useCallback, useState } from 'react';
 import styled from 'styled-components';
 import LabeledField from './LabeledField';
 import selectIcon from '../images/select-icon.svg';
@@ -102,32 +102,39 @@ interface SelectProps {
     label: string;
     placeholder?: string;
     options: string[];
+    value: number;
+    setValue: Dispatch<SetStateAction<number>>;
 }
 
-const Select: React.FC<SelectProps> = ({ label, placeholder = '--- select ---', options }) => {
+const Select: React.FC<SelectProps> = ({
+    label,
+    placeholder = '--- select ---',
+    options,
+    value,
+    setValue
+}) => {
     const [isOpen, setIsOpen] = useState(false);
-    const [selectedOption, setSelectedOption] = useState(-1);
 
     const toggleOpen = () => setIsOpen(prevState => !prevState);
 
     const onOptionClicked = useCallback(
         (index: number) => () => {
-            if (options[index]) setSelectedOption(index);
+            if (options[index]) setValue(index);
             setIsOpen(false);
         },
-        [options]
+        [options, setValue]
     );
 
     const onKeyDown = useCallback(
         (e: React.KeyboardEvent<HTMLDivElement>) => {
             const key = e.key || e.code;
             if (key === 'ArrowUp') {
-                setSelectedOption(prevIndex => Math.max(0, prevIndex - 1));
+                setValue(prevIndex => Math.max(0, prevIndex - 1));
             } else if (key === 'ArrowDown') {
-                setSelectedOption(prevIndex => Math.min(options.length - 1, prevIndex + 1));
+                setValue(prevIndex => Math.min(options.length - 1, prevIndex + 1));
             }
         },
-        [options]
+        [options, setValue]
     );
 
     return (
@@ -138,15 +145,11 @@ const Select: React.FC<SelectProps> = ({ label, placeholder = '--- select ---', 
                     data-placeholder={placeholder}
                     onClick={toggleOpen}
                     onKeyDown={onKeyDown}>
-                    {options[selectedOption] || ''}
+                    {options[value] || ''}
                 </SelectHeader>
             </LabeledField>
             {isOpen && (
-                <SelectList
-                    selectedOption={selectedOption}
-                    options={options}
-                    onOptionClicked={onOptionClicked}
-                />
+                <SelectList selectedOption={value} options={options} onOptionClicked={onOptionClicked} />
             )}
         </SelectWrapper>
     );

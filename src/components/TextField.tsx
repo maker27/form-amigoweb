@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Dispatch, SetStateAction } from 'react';
 import styled from 'styled-components';
 import LabeledField from './LabeledField';
 
@@ -39,16 +39,22 @@ const StyledTextBlock = styled.div`
 `;
 
 interface TextFieldProps {
+    value: string;
+    setValue: Dispatch<SetStateAction<string>>;
     label: string;
     placeholder?: string;
     error?: string;
 }
 
-const TextField: React.FC<TextFieldProps> = ({ label, placeholder, error }) => {
+const TextField: React.FC<TextFieldProps> = ({ value, setValue, label, placeholder, error }) => {
+    const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setValue(e.target.value);
+    };
+
     return (
         <StyledTextBlock>
             <LabeledField label={label}>
-                <Input type="text" placeholder={placeholder} />
+                <Input type="text" placeholder={placeholder} value={value} onChange={onChange} />
             </LabeledField>
             <ErrorMessage>{error}</ErrorMessage>
         </StyledTextBlock>

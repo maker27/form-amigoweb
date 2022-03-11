@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Dispatch, SetStateAction } from 'react';
 import styled from 'styled-components';
 import checkboxIcon from '../images/checkbox.svg';
 
@@ -41,13 +41,19 @@ const CheckboxLabel = styled.span`
 
 interface CheckboxProps {
     children: React.ReactNode;
+    checked?: boolean;
+    setChecked: Dispatch<SetStateAction<boolean>>;
 }
 
-const Checkbox: React.FC<CheckboxProps> = ({ children }) => {
+const Checkbox: React.FC<CheckboxProps> = ({ children, checked, setChecked }) => {
+    const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setChecked(e.target.checked);
+    };
+
     return (
         <CheckboxContainer>
             <label>
-                <CheckboxInput />
+                <CheckboxInput checked={checked} onChange={onChange} />
                 <CheckboxLabel>{children}</CheckboxLabel>
             </label>
         </CheckboxContainer>
