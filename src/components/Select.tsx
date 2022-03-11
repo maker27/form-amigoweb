@@ -55,10 +55,11 @@ const StyledSelectList = styled.ul`
     z-index: 1;
     display: block;
     width: 100%;
-    padding: 12px 0;
+    max-height: 200px;
+    overflow-y: auto;
+    padding: 11px 0;
     background: #ffffff;
     border: 1px solid #dbe2ea;
-    box-sizing: border-box;
     box-shadow: 0 4px 8px rgba(44, 39, 56, 0.04), 0 20px 20px rgba(44, 39, 56, 0.04);
     border-radius: 6px;
 `;
