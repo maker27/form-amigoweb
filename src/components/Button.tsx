@@ -41,10 +41,15 @@ const DisabledButton = styled(BaseButton)`
 interface ButtonProps {
     children: React.ReactNode;
     disabled?: boolean;
+    onClick?: React.MouseEventHandler;
 }
 
-const Button: React.FC<ButtonProps> = ({ children, disabled }) => {
-    return disabled ? <DisabledButton>{children}</DisabledButton> : <ActiveButton>{children}</ActiveButton>;
+const Button: React.FC<ButtonProps> = ({ children, disabled, onClick }) => {
+    return disabled ? (
+        <DisabledButton>{children}</DisabledButton>
+    ) : (
+        <ActiveButton onClick={onClick}>{children}</ActiveButton>
+    );
 };
 
 export default Button;
