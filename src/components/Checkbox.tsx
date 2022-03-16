@@ -1,6 +1,7 @@
 import React, { Dispatch, SetStateAction } from 'react';
 import styled from 'styled-components';
 import checkboxIcon from '../images/checkbox.svg';
+import { focusNextFormElement, onEnterPress } from '../utils';
 
 const CheckboxContainer = styled.div`
     margin: 32px 0 36px;
@@ -50,9 +51,19 @@ const Checkbox: React.FC<CheckboxProps> = ({ children, checked, setChecked }) =>
         setChecked(e.target.checked);
     };
 
+    const onKeyDown = (event: React.KeyboardEvent<HTMLLabelElement>) => {
+        if ((event.target as HTMLElement).tagName === 'LABEL') {
+            if (event.code === 'Space') {
+                setChecked(prevState => !prevState);
+            } else {
+                onEnterPress(event, () => focusNextFormElement(event));
+            }
+        }
+    };
+
     return (
         <CheckboxContainer>
-            <label>
+            <label tabIndex={0} onKeyDown={onKeyDown}>
                 <CheckboxInput checked={checked} onChange={onChange} />
                 <CheckboxLabel>{children}</CheckboxLabel>
             </label>

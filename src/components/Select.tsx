@@ -2,6 +2,7 @@ import React, { Dispatch, SetStateAction, useCallback, useState } from 'react';
 import styled from 'styled-components';
 import LabeledField from './LabeledField';
 import selectIcon from '../images/select-icon.svg';
+import { focusNextFormElement, onEnterPress } from '../utils';
 
 const SelectWrapper = styled.div`
     width: 100%;
@@ -11,7 +12,7 @@ interface SelectHeaderProps {
     active: boolean;
 }
 
-const SelectHeader = styled.div.attrs(() => ({ tabIndex: -1 }))<SelectHeaderProps>`
+const SelectHeader = styled.div.attrs(() => ({ tabIndex: 0 }))<SelectHeaderProps>`
     position: relative;
     width: 100%;
     height: 52px;
@@ -132,6 +133,8 @@ const Select: React.FC<SelectProps> = ({
                 setValue(prevIndex => Math.max(0, prevIndex - 1));
             } else if (key === 'ArrowDown') {
                 setValue(prevIndex => Math.min(options.length - 1, prevIndex + 1));
+            } else {
+                onEnterPress(e, () => focusNextFormElement(e));
             }
         },
         [options, setValue]

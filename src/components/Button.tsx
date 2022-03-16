@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { onEnterPress } from '../utils';
 
 const BaseButton = styled.div`
     display: flex;
@@ -17,7 +18,7 @@ const BaseButton = styled.div`
     user-select: none;
 `;
 
-const ActiveButton = styled(BaseButton)`
+const ActiveButton = styled(BaseButton).attrs(() => ({ tabIndex: 0 }))`
     cursor: pointer;
 
     &:hover {
@@ -30,7 +31,7 @@ const ActiveButton = styled(BaseButton)`
     }
 `;
 
-const DisabledButton = styled(BaseButton)`
+export const DisabledButton = styled(BaseButton).attrs(() => ({ disabled: 'disabled' }))`
     background: #dbe2ea;
     box-shadow: 0 4px 8px rgba(44, 39, 56, 0.08);
     color: #2c2738;
@@ -41,14 +42,16 @@ const DisabledButton = styled(BaseButton)`
 interface ButtonProps {
     children: React.ReactNode;
     disabled?: boolean;
-    onClick?: React.MouseEventHandler;
+    onClick?: () => void;
 }
 
 const Button: React.FC<ButtonProps> = ({ children, disabled, onClick }) => {
     return disabled ? (
         <DisabledButton>{children}</DisabledButton>
     ) : (
-        <ActiveButton onClick={onClick}>{children}</ActiveButton>
+        <ActiveButton onClick={onClick} onKeyDown={event => onEnterPress(event, onClick)}>
+            {children}
+        </ActiveButton>
     );
 };
 

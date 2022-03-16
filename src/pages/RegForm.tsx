@@ -6,9 +6,8 @@ import Button from '../components/Button';
 import React, { useState } from 'react';
 import useRegForm from '../hooks/useRegForm';
 import styled from 'styled-components';
-import { Link as RouterLink } from 'react-router-dom';
+import { Link as RouterLink, useNavigate } from 'react-router-dom';
 import Title from '../components/Title';
-import { useNavigate } from 'react-router';
 
 const Subtitle = styled.div`
     margin-bottom: 60px;
@@ -54,40 +53,42 @@ const RegForm: React.FC = () => {
             <Subtitle>
                 Уже есть аккаунт? <Link to="auth">Войти</Link>
             </Subtitle>
-            <TextField
-                value={name}
-                setValue={setName}
-                label="Имя"
-                placeholder="Введите Ваше имя"
-                error={nameError}
-            />
-            <TextField
-                value={email}
-                setValue={setEmail}
-                label="Email"
-                placeholder="Введите email"
-                error={emailError}
-            />
-            <TextField
-                value={phone}
-                setValue={setPhone}
-                label="Номер телефона"
-                placeholder="Введите номер телефона"
-                error={phoneError}
-            />
-            <Select
-                label="Язык"
-                placeholder="Язык"
-                options={languageOptions}
-                value={selectedLanguage}
-                setValue={setSelectedLanguage}
-            />
-            <Checkbox checked={isAcceptTerms} setChecked={setIsAcceptTerms}>
-                Принимаю <Link to="terms">условия</Link> использования
-            </Checkbox>
-            <Button disabled={!isValidForm} onClick={onRegEnd}>
-                Зарегистрироваться
-            </Button>
+            <form>
+                <TextField
+                    value={name}
+                    setValue={setName}
+                    label="Имя"
+                    placeholder="Введите Ваше имя"
+                    error={nameError}
+                />
+                <TextField
+                    value={email}
+                    setValue={setEmail}
+                    label="Email"
+                    placeholder="Введите email"
+                    error={emailError}
+                />
+                <TextField
+                    value={phone}
+                    setValue={setPhone}
+                    label="Номер телефона"
+                    placeholder="Введите номер телефона"
+                    error={phoneError}
+                />
+                <Select
+                    label="Язык"
+                    placeholder="Язык"
+                    options={languageOptions}
+                    value={selectedLanguage}
+                    setValue={setSelectedLanguage}
+                />
+                <Checkbox checked={isAcceptTerms} setChecked={setIsAcceptTerms}>
+                    Принимаю <Link to="terms">условия</Link> использования
+                </Checkbox>
+                <Button disabled={!isValidForm} onClick={onRegEnd}>
+                    Зарегистрироваться
+                </Button>
+            </form>
         </>
     );
 };

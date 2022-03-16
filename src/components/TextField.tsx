@@ -1,6 +1,7 @@
-import React, { Dispatch, SetStateAction } from 'react';
+import React, { Dispatch, SetStateAction, useCallback } from 'react';
 import styled from 'styled-components';
 import LabeledField from './LabeledField';
+import { focusNextFormElement, onEnterPress } from '../utils';
 
 const Input = styled.input`
     width: 100%;
@@ -51,10 +52,18 @@ const TextField: React.FC<TextFieldProps> = ({ value, setValue, label, placehold
         setValue(e.target.value);
     };
 
+    const onKeyDown = useCallback(event => onEnterPress(event, () => focusNextFormElement(event)), []);
+
     return (
         <StyledTextBlock>
             <LabeledField label={label}>
-                <Input type="text" placeholder={placeholder} value={value} onChange={onChange} />
+                <Input
+                    type="text"
+                    placeholder={placeholder}
+                    value={value}
+                    onChange={onChange}
+                    onKeyDown={onKeyDown}
+                />
             </LabeledField>
             <ErrorMessage>{error}</ErrorMessage>
         </StyledTextBlock>
