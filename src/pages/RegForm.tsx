@@ -65,7 +65,7 @@ const RegForm: React.FC = () => {
                 value={email}
                 setValue={setEmail}
                 label="Email"
-                placeholder="Введите ваш email"
+                placeholder="Введите email"
                 error={emailError}
             />
             <TextField
