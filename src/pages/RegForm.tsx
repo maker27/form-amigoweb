@@ -45,14 +45,14 @@ const RegForm: React.FC = () => {
     );
 
     const onRegEnd = () => {
-        navigate('/profile');
+        navigate('../profile');
     };
 
     return (
         <>
             <Title>Регистрация</Title>
             <Subtitle>
-                Уже есть аккаунт? <Link to="/auth">Войти</Link>
+                Уже есть аккаунт? <Link to="auth">Войти</Link>
             </Subtitle>
             <TextField
                 value={name}
@@ -83,7 +83,7 @@ const RegForm: React.FC = () => {
                 setValue={setSelectedLanguage}
             />
             <Checkbox checked={isAcceptTerms} setChecked={setIsAcceptTerms}>
-                Принимаю <Link to="/terms">условия</Link> использования
+                Принимаю <Link to="terms">условия</Link> использования
             </Checkbox>
             <Button disabled={!isValidForm} onClick={onRegEnd}>
                 Зарегистрироваться

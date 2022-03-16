@@ -1,7 +1,7 @@
 import React from 'react';
 import GlobalStyles from './styles';
 import styled from 'styled-components';
-import { BrowserRouter as Router, Routes } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Navigate } from 'react-router-dom';
 import { Route } from 'react-router';
 import RegForm from './pages/RegForm';
 import Terms from './pages/Terms';
@@ -21,12 +21,15 @@ const App: React.FC = () => {
         <>
             <GlobalStyles />
             <Container>
-                <Router basename="/form-amigoweb">
+                <Router>
                     <Routes>
-                        <Route path="/" element={<RegForm />} />
-                        <Route path="/auth" element={<AuthForm />} />
-                        <Route path="/profile" element={<Profile />} />
-                        <Route path="/terms" element={<Terms />} />
+                        <Route path="/form-amigoweb">
+                            <Route path="" element={<RegForm />} />
+                            <Route path="auth" element={<AuthForm />} />
+                            <Route path="profile" element={<Profile />} />
+                            <Route path="terms" element={<Terms />} />
+                        </Route>
+                        <Route path="*" element={<Navigate replace to="/form-amigoweb" />} />
                     </Routes>
                 </Router>
             </Container>

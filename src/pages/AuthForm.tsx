@@ -10,7 +10,7 @@ const AuthForm: React.FC = () => {
 
     const navigate = useNavigate();
     const onSubmit = () => {
-        navigate('/profile');
+        navigate('../profile');
     };
 
     return (
