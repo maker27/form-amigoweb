@@ -17,13 +17,13 @@ const SelectHeader = styled.div.attrs(() => ({ tabIndex: 0 }))<SelectHeaderProps
     width: 100%;
     height: 52px;
     padding: 16px 57px 15px 16px;
-    background: #ffffff;
-    border: ${props => (props.active ? '2px solid #0880ae' : '1px solid #dbe2ea')};
+    background: ${({ theme }) => theme.colors.bg};
+    border: ${props => (props.active ? '2px solid ' + props.theme.colors.link : '1px solid #dbe2ea')};
     box-shadow: 0 4px 8px rgba(44, 39, 56, 0.04);
     border-radius: 6px;
     font-size: 16px;
     line-height: 21px;
-    color: #2c2738;
+    color: ${({ theme }) => theme.colors.text};
     user-select: none;
 
     &:empty::before {
@@ -32,7 +32,7 @@ const SelectHeader = styled.div.attrs(() => ({ tabIndex: 0 }))<SelectHeaderProps
     }
 
     &:active {
-        border: 2px solid #0880ae;
+        border: 2px solid ${({ theme }) => theme.colors.link};
     }
 
     &::after {
@@ -59,7 +59,7 @@ const StyledSelectList = styled.ul`
     max-height: 200px;
     overflow-y: auto;
     padding: 11px 0;
-    background: #ffffff;
+    background: ${({ theme }) => theme.colors.bg};
     border: 1px solid #dbe2ea;
     box-shadow: 0 4px 8px rgba(44, 39, 56, 0.04), 0 20px 20px rgba(44, 39, 56, 0.04);
     border-radius: 6px;
@@ -74,9 +74,9 @@ const SelectListItem = styled.li<SelectHeaderProps>`
     list-style: none;
     font-size: 16px;
     line-height: 21px;
-    color: #756f86;
+    color: ${({ theme }) => theme.colors.label};
     cursor: pointer;
-    background: ${props => (props.active ? '#ebf4f8' : 'none')};
+    background: ${({ active }) => (active ? '#ebf4f8' : 'none')};
 `;
 
 interface SelectListProps {

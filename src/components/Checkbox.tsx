@@ -19,7 +19,7 @@ const CheckboxLabel = styled.span`
     font-weight: 500;
     font-size: 16px;
     line-height: 21px;
-    color: #756f86;
+    color: ${({ theme }) => theme.colors.label};
     user-select: none;
     cursor: pointer;
 
@@ -27,7 +27,7 @@ const CheckboxLabel = styled.span`
         content: '';
         width: 28px;
         height: 28px;
-        background: #ffffff;
+        background: ${({ theme }) => theme.colors.bg};
         border: 1px solid #dbe2ea;
         box-shadow: 0 4px 8px rgba(44, 39, 56, 0.04);
         border-radius: 4px;
@@ -35,7 +35,7 @@ const CheckboxLabel = styled.span`
     }
 
     ${CheckboxInput}:checked + &::before {
-        border: 2px solid #0880ae;
+        border: 2px solid ${({ theme }) => theme.colors.link};
         background: url(${checkboxIcon}) center no-repeat;
     }
 `;

@@ -7,7 +7,7 @@ const Label = styled.div`
     font-weight: 500;
     font-size: 16px;
     line-height: 21px;
-    color: #756f86;
+    color: ${({ theme }) => theme.colors.label};
     user-select: none;
 `;
 

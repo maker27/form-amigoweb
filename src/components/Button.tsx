@@ -8,7 +8,7 @@ const BaseButton = styled.div`
     align-items: center;
     width: 100%;
     height: 56px;
-    background: #0880ae;
+    background: ${({ theme }) => theme.colors.link};
     box-shadow: 0 2px 4px rgba(44, 39, 56, 0.08), 0 4px 8px rgba(44, 39, 56, 0.08);
     border-radius: 6px;
     font-weight: 500;
@@ -32,9 +32,9 @@ const ActiveButton = styled(BaseButton).attrs(() => ({ tabIndex: 0 }))`
 `;
 
 export const DisabledButton = styled(BaseButton).attrs(() => ({ disabled: 'disabled' }))`
-    background: #dbe2ea;
+    background: ${({ theme }) => theme.colors.disabled};
     box-shadow: 0 4px 8px rgba(44, 39, 56, 0.08);
-    color: #2c2738;
+    color: ${({ theme }) => theme.colors.text};
     mix-blend-mode: normal;
     opacity: 0.5;
 `;

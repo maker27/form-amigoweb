@@ -7,13 +7,13 @@ const Input = styled.input`
     width: 100%;
     height: 52px;
     padding: 16px 16px 15px 16px;
-    background: #ffffff;
+    background: ${({ theme }) => theme.colors.bg};
     border: 1px solid #dbe2ea;
     box-shadow: 0 4px 8px rgba(44, 39, 56, 0.04);
     border-radius: 6px;
     font-size: 16px;
     line-height: 21px;
-    color: #2c2738;
+    color: ${({ theme }) => theme.colors.text};
 
     &::placeholder {
         color: #7c9cbf;
@@ -22,7 +22,7 @@ const Input = styled.input`
     &:focus,
     &:active {
         outline: none;
-        border: 2px solid #0880ae;
+        border: 2px solid ${({ theme }) => theme.colors.link};
     }
 `;
 

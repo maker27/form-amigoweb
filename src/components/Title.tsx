@@ -5,7 +5,7 @@ const Title = styled.h1`
     font-weight: 700;
     font-size: 34px;
     line-height: 44px;
-    color: #2c2738;
+    color: ${({ theme }) => theme.colors.text};
 `;
 
 export default Title;

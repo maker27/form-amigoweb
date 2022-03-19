@@ -13,13 +13,13 @@ const Subtitle = styled.div`
     margin-bottom: 60px;
     font-size: 16px;
     line-height: 22px;
-    color: #2c2738;
+    color: ${({ theme }) => theme.colors.text};
 `;
 
 const Link = styled(RouterLink)`
     &,
     &:visited {
-        color: #0880ae;
+        color: ${({ theme }) => theme.colors.link};
         text-decoration: none;
     }
     &:hover {
